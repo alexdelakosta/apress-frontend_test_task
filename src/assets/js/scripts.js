@@ -1,45 +1,46 @@
-var items = API.products,
-    body = document.querySelector('main.product-listing-wrapper'),
-    cfg = {
-      css: {
-        top:            'header',
-        teaser:         'product',
-        teaserCover:    'cover',
-        teaserContent:  'content',
-        teaserButtons:  'buttons',
-        orderOpen:      'open-order',
-        cart: {
-          box:          'cart',
-          list:         'cart-body',
-          item:         'item',
-          remove:       'item-remove'
-        },
-        modal: {
-          name:         'name',
-          price:        'price',
-          image:        'cover'
-        }
+var
+  items = API.products,
+  body = document.querySelector('main.product-listing-wrapper'),
+  cfg = {
+    css: {
+      top: 'js-header',
+      teaser: 'product',
+      teaserCover: 'cover',
+      teaserContent: 'content',
+      teaserButtons: 'buttons',
+      orderOpen: 'open-order',
+      cart: {
+        box: 'js-cart',
+        list: 'js-cart-body',
+        item: 'js-item',
+        remove: 'js-item-remove'
       },
-      btn: {
-        order:        'order',
-        buy:          'buy',
-        orderClose:   'modal-close'
-      },
+      modal: {
+        name: 'js-name',
+        price: 'js-price',
+        image: 'js-cover'
+      }
     },
-    translate = {
-      order:        'Заказать',
-      addCart:      'В корзину'
-    };
+    btn: {
+      order: 'js-order',
+      buy: 'js-buy',
+      orderClose: 'js-modal-close'
+    },
+  },
+  translate = {
+    order: 'Заказать',
+    addCart: 'В корзину'
+  };
 
 items.forEach(el => {
   return body.appendChild(teaser(el));
 });
 
-function getCart(){
+function getCart() {
   return JSON.parse(localStorage.getItem('cart'));
 };
 
-function setCart(o){
+function setCart(o) {
   localStorage.setItem('cart', JSON.stringify(o));
   return false;
 };
@@ -51,9 +52,9 @@ function delCartItem(id) {
   return renderCart();
 };
 
-document.querySelector('.cart-open').onclick = function(e) {
+document.querySelector('.js-cart-open').onclick = function(e) {
   let cart = document.querySelector('.' + cfg.css.cart.box);
-  if (cart.style.display == 'block') {
+  if (cart.style.display === 'block') {
     cart.style.display = 'none';
   } else {
     renderCart();
@@ -61,13 +62,11 @@ document.querySelector('.cart-open').onclick = function(e) {
   e.preventDefault(e);
 };
 
-
-/* Обработка "Заказать" start */
 let order = document.querySelectorAll('.' + cfg.btn.order);
 [].forEach.call(order, function(el) {
   el.onclick = function(e) {
-    let item      = el.closest('.' + cfg.css.teaser),
-        id        = item.dataset.id;
+    let item = el.closest('.' + cfg.css.teaser),
+        id = item.dataset.id;
     document.querySelector('body').classList.add(cfg.css.orderOpen);
     items.find((product, index) => {
       if (product.id == id) {
@@ -80,9 +79,7 @@ let order = document.querySelectorAll('.' + cfg.btn.order);
     e.preventDefault(e);
   }
 });
-/* Обработка "Заказать" end */
 
-/* Закрытие модального окна start */
 let orderClose = document.querySelectorAll('.' + cfg.btn.orderClose);
 [].forEach.call(orderClose, function(el) {
   el.onclick = function(e) {
@@ -90,19 +87,17 @@ let orderClose = document.querySelectorAll('.' + cfg.btn.orderClose);
     e.preventDefault(e);
   }
 });
-/* Закрытие модального окна end */
 
-/* Обработка "Купить" start */
 let buy = document.querySelectorAll('.' + cfg.btn.buy);
 [].forEach.call(buy, function(el) {
   el.onclick = function(e) {
-    let cartData  = getCart() || {},
-        item      = el.closest('.' + cfg.css.teaser),
-        id        = item.dataset.id,
-        title     = item.querySelector('.name').innerHTML,
-        price     = item.querySelector('.price').innerHTML,
-        image     = item.querySelector('.cover').innerHTML,
-        cart      = document.querySelector('.' + cfg.css.cart.box);
+    let cartData = getCart() || {},
+        item = el.closest('.' + cfg.css.teaser),
+        id = item.dataset.id,
+        title = item.querySelector('.name').innerHTML,
+        price = item.querySelector('.price').innerHTML,
+        image = item.querySelector('.cover').innerHTML,
+        cart = document.querySelector('.' + cfg.css.cart.box);
     cartData.hasOwnProperty(id) ? cartData[id][4] += 1 : cartData[id] = [id, title, price, image, 1];
     if (!setCart(cartData)) {
       renderCart();
@@ -110,16 +105,15 @@ let buy = document.querySelectorAll('.' + cfg.btn.buy);
     e.preventDefault(e);
   }
 });
-/* Обработка "Купить" end */
 
 function renderCart() {
-  let cartData        = getCart() || {},
-      cartItemsList   = '',
-      top             = document.querySelector('.' + cfg.css.top),
-      cart            = document.querySelector('.' + cfg.css.cart.box);
+  let cartData = getCart() || {},
+      cartItemsList = '',
+      top = document.querySelector('.' + cfg.css.top),
+      cart = document.querySelector('.' + cfg.css.cart.box);
   for (let cartItems in cartData) {
-    cartItemsList += '<div class="item" data-id="' + cartData[cartItems][0] + '">' +
-        '<span class="item-remove"></span>' +
+    cartItemsList += '<div class="item js-item" data-id="' + cartData[cartItems][0] + '">' +
+        '<span class="item-remove js-item-remove"></span>' +
         '<div class="cover">' + cartData[cartItems][3] + '</div>' +
         '<div class="content"><span class="name">' + cartData[cartItems][1] + '</span>' + cartData[cartItems][2] + '</div>' +
       '</div>';
