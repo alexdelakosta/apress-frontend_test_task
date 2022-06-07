@@ -1,17 +1,64 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" src="assets/css/styles.css" />
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
+</head>
+<body>
 
-    <main class="product-listing-wrapper">
-wer
+<div class="header">
+  <div class="container">
+    <div class="header-grid">
+      <div class="logo">LOGO TEST SITE</div>
+      <div class="cart-box">
+        <a class="link cart-open" href="#">Корзина <span></span></a>
+        <div class="cart">
+          <div class="cart-head">Вы добавили в корзину</div>
+          <div class="cart-body">
 
-    </main>
+          </div>
+          <div class="cart-footer">
+            <a class="btn red block" href="#">Перейти в корзину</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <script src="api/products.js"></script>
-    <script src="assets/js/scripts.js"></script>
-  </body>
+<div class="container">
+  <main class="product-listing-wrapper">
+
+  </main>
+</div>
+
+<div class="modal">
+  <div class="modal-tail modal-close"></div>
+  <div class="modal-body">
+    <span class="close modal-close"></span>
+    <div class="name"></div>
+    <form class="content">
+      <div class="item">
+        <div class="cover"></div>
+        <div class="price"></div>
+      </div>
+      <div class="message">
+        <div class="form-group">
+          <label for="message">Комментарий к заказу:</label>
+          <textarea class="form-control" id="message" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="phone">Ваш телефон*:</label>
+          <input type="text" class="form-control" id="phone" placeholder="Телефон" required>
+        </div>
+        <button type="submit" class="btn red block" value="">Отправить</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/api/products.js"></script>
+<script src="/assets/js/scripts.js"></script>
+
+</body>
 </html>
