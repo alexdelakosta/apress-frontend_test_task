@@ -2,23 +2,28 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
+  <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
+  <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
 </head>
 <body>
 
-<div class="header">
+<div class="header js-header">
   <div class="container">
     <div class="header-grid">
       <div class="logo">LOGO TEST SITE</div>
       <div class="cart-box">
-        <a class="link cart-open" href="#">Корзина <span></span></a>
-        <div class="cart">
-          <div class="cart-head">Вы добавили в корзину</div>
-          <div class="cart-body">
-
+        <button class="link js-cart-open">
+          Корзина
+        </button>
+        <div class="cart js-cart">
+          <div class="cart-head">
+            Вы добавили в корзину
           </div>
+          <div class="cart-body js-cart-body"></div>
           <div class="cart-footer">
-            <a class="btn red block" href="#">Перейти в корзину</a>
+            <a class="btn red block" href="#">
+              Перейти в корзину
+            </a>
           </div>
         </div>
       </div>
@@ -27,20 +32,18 @@
 </div>
 
 <div class="container">
-  <main class="product-listing-wrapper">
-
-  </main>
+  <main class="product-listing-wrapper"></main>
 </div>
 
-<div class="modal">
-  <div class="modal-tail modal-close"></div>
+<div class="modal js-modal">
+  <div class="modal-tail modal-close js-modal-close"></div>
   <div class="modal-body">
-    <span class="close modal-close"></span>
-    <div class="name"></div>
-    <form class="content">
+    <button class="close modal-close js-modal-close"></button>
+    <div class="name js-name"></div>
+    <form class="content js-modal-form">
       <div class="item">
-        <div class="cover"></div>
-        <div class="price"></div>
+        <div class="cover js-cover"></div>
+        <div class="price js-price"></div>
       </div>
       <div class="message">
         <div class="form-group">
@@ -51,14 +54,16 @@
           <label for="phone">Ваш телефон*:</label>
           <input type="text" class="form-control" id="phone" placeholder="Телефон" required>
         </div>
-        <button type="submit" class="btn red block" value="">Отправить</button>
+        <button type="submit" class="btn red block" value="445">
+          Отправить
+        </button>
       </div>
     </form>
   </div>
 </div>
 
-<script src="/api/products.js"></script>
-<script src="/assets/js/scripts.js"></script>
+<script src="./api/products.js"></script>
+<script src="./assets/js/scripts.js"></script>
 
 </body>
 </html>
